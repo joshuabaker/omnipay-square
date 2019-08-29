@@ -27,7 +27,7 @@
     },
     "require": {
         "omnipay/common": "~3.0",
-        "square/connect": "*"
+        "square/connect": "<=2.20190710.0"
     },
     "require-dev": {
         "omnipay/tests": "~3.0"
