@@ -3,6 +3,9 @@
 namespace Omnipay\Square;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Square\Message\ChargeRequest;
+use Omnipay\Square\Message\CompletePaymentRequest;
+use Omnipay\Square\Message\TransactionRequest;
 
 /**
  * Square Gateway
@@ -88,19 +91,46 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Purchase request functions
-     * @param array $parameters
-     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Common\Message\RequestInterface
+     * @param array $options
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Square\Message\ChargeRequest
      */
-
-    public function purchase(array $parameters = [])
+    public function purchase(array $options = [])
     {
-        return $this->createRequest('\Omnipay\Square\Message\ChargeRequest', $parameters);
+        return $this->createRequest(ChargeRequest::class, $options);
     }
 
-    public function completePurchase(array $parameters = [])
+    /**
+     * @param array $options
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Square\Message\TransactionRequest
+     */
+    public function completePurchase(array $options = [])
     {
-        return $this->createRequest('\Omnipay\Square\Message\TransactionRequest', $parameters);
+        return $this->createRequest(TransactionRequest::class, $options);
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return \Omnipay\Common\Message\RequestInterface|\Omnipay\Square\Message\ChargeRequest
+     */
+    public function authorize(array $options = [])
+    {
+        $request = $this->purchase($options);
+        $request->setAutocomplete(false);
+
+        return $request;
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Square\Message\CompletePaymentRequest
+     */
+    public function completeAuthorize(array $options = [])
+    {
+        return $this->createRequest(CompletePaymentRequest::class, $options);
     }
 
     /**

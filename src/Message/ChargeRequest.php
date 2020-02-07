@@ -104,6 +104,16 @@ class ChargeRequest extends AbstractRequest
         return $this->setParameter('referenceId', $value);
     }
 
+    public function getAutocomplete()
+    {
+        return $this->getParameter('autocomplete');
+    }
+
+    public function setAutocomplete($value)
+    {
+        return $this->setParameter('autocomplete', $value);
+    }
+
     public function getOrderId()
     {
         return $this->getParameter('orderId');

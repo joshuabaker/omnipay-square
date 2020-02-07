@@ -8,7 +8,7 @@ use SquareConnect;
 /**
  * Square Authorize Request
  */
-class AuthorizeRequest extends AbstractRequest
+class CompletePaymentRequest extends AbstractRequest
 {
     protected $liveEndpoint = 'https://connect.squareup.com';
     protected $testEndpoint = 'https://connect.squareupsandbox.com';
@@ -89,6 +89,6 @@ class AuthorizeRequest extends AbstractRequest
 
     public function createResponse($response)
     {
-        return $this->response = new ChargeResponse($this, $response);
+        return $this->response = new CompletePaymentResponse($this, $response);
     }
 }
