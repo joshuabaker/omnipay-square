@@ -3,6 +3,7 @@
 namespace Omnipay\Square;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Square\Message\CancelPaymentRequest;
 use Omnipay\Square\Message\ChargeRequest;
 use Omnipay\Square\Message\CompletePaymentRequest;
 use Omnipay\Square\Message\TransactionRequest;
@@ -131,6 +132,16 @@ class Gateway extends AbstractGateway
     public function completeAuthorize(array $options = [])
     {
         return $this->createRequest(CompletePaymentRequest::class, $options);
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Square\Message\CancelPaymentRequest
+     */
+    public function void(array $options = [])
+    {
+        return $this->createRequest(CancelPaymentRequest::class, $options);
     }
 
     /**
