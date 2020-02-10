@@ -23,14 +23,22 @@ class CompletePaymentRequest extends AbstractRequest
         return $this->setParameter('accessToken', $value);
     }
 
-    public function getPaymentId()
+    /**
+     * @return mixed|string
+     */
+    public function getTransactionReference()
     {
-        return $this->getParameter('paymentId');
+        return $this->getParameter('transactionReference');
     }
 
-    public function setPaymentId($value)
+    /**
+     * @param string $value
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Square\Message\CompletePaymentRequest
+     */
+    public function setTransactionReference($value)
     {
-        return $this->setParameter('paymentId', $value);
+        return $this->setParameter('transactionReference', $value);
     }
 
     public function getEndpoint()
@@ -51,7 +59,7 @@ class CompletePaymentRequest extends AbstractRequest
     public function getData()
     {
         return [
-            'paymentId' => $this->getPaymentId(),
+            'paymentId' => $this->getTransactionReference(),
         ];
     }
 

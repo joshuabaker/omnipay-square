@@ -40,21 +40,21 @@ class CancelPaymentRequest extends AbstractRequest
     }
 
     /**
-     * @return mixed
+     * @return mixed|string
      */
-    public function getPaymentId()
+    public function getTransactionReference()
     {
-        return $this->getParameter('paymentId');
+        return $this->getParameter('transactionReference');
     }
 
     /**
-     * @param $value
+     * @param string $value
      *
-     * @return \Omnipay\Square\Message\CancelPaymentRequest
+     * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Square\Message\CompletePaymentRequest
      */
-    public function setPaymentId($value)
+    public function setTransactionReference($value)
     {
-        return $this->setParameter('paymentId', $value);
+        return $this->setParameter('transactionReference', $value);
     }
 
     /**
@@ -84,7 +84,7 @@ class CancelPaymentRequest extends AbstractRequest
     public function getData()
     {
         return [
-            'paymentId' => $this->getPaymentId(),
+            'paymentId' => $this->getTransactionReference(),
         ];
     }
 
