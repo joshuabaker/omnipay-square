@@ -10,7 +10,8 @@ use Omnipay\Square\Message\TransactionRequest;
 
 /**
  * Square Gateway
- *
+ * @method \Omnipay\Common\Message\RequestInterface capture(array $options = [])
+ * @method \Omnipay\Common\Message\RequestInterface updateCard(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
